@@ -1,126 +1,181 @@
-🚀 Template Full-Stack: React (Vite + TS) + Spring Boot + MySQL
-Guida completa all'uso, configurazione e risoluzione problemi per il tuo progetto d'esame.
+# Esame Full-Stack
 
-📋 Prerequisiti WSL / Ubuntu / Windows
-Prima di iniziare, assicurati di avere questi strumenti installati e configurati:
+Template full-stack con:
 
-Requisito	Versione	Come verificare	Note per WSL
-Java JDK	17+	java -version	Su WSL: sudo apt install openjdk-17-jdk
-Maven	3.8+	mvn -version	Su WSL: sudo apt install maven
-Node.js	18+	node -v	Su WSL: usa NVM o sudo apt install nodejs
-npm	9+	npm -v	Su WSL: installato con Node.js
-MySQL Server	8.0+	mysql --version	Consigliato su WSL: sudo apt install mysql-server
-⚡ AVVIO RAPIDO (I comandi da lanciare all'esame)
-1. Avvia il Database (MySQL)
-Se usi MySQL su WSL/Linux, avvia il servizio:
+- Frontend: React + Vite + TypeScript
+- Backend: Spring Boot
+- Database: MySQL
 
-sudo /etc/init.d/mysql start# Oppure: sudo systemctl start mysql
-2. Avvia il Backend (Spring Boot)
-Apri un terminale nella cartella backend:
+Guida rapida per avvio, configurazione e troubleshooting, pensata anche per uso durante l'esame.
 
+## Indice
+
+- [Prerequisiti](#prerequisiti)
+- [Avvio rapido](#avvio-rapido)
+- [Configurazione MySQL](#configurazione-mysql)
+- [Comunicazione Frontend-Backend](#comunicazione-frontend-backend)
+- [Aggiungere una nuova entità](#aggiungere-una-nuova-entita)
+- [Troubleshooting](#troubleshooting)
+- [Struttura del progetto](#struttura-del-progetto)
+
+## Prerequisiti
+
+Assicurati di avere questi strumenti installati:
+
+| Requisito | Versione minima | Verifica | Note WSL/Linux |
+|---|---|---|---|
+| Java JDK | 17+ | `java -version` | `sudo apt install openjdk-17-jdk` |
+| Maven | 3.8+ | `mvn -version` | `sudo apt install maven` |
+| Node.js | 18+ | `node -v` | Consigliato NVM |
+| npm | 9+ | `npm -v` | Incluso con Node.js |
+| MySQL Server | 8.0+ | `mysql --version` | `sudo apt install mysql-server` |
+
+## Avvio rapido
+
+### 1) Avvia MySQL
+
+```bash
+sudo /etc/init.d/mysql start
+# oppure
+sudo systemctl start mysql
+```
+
+### 2) Avvia il backend
+
+```bash
 cd backend
 mvn spring-boot:run
+```
 
-✅ Se vedi Started BackendApplication in X.XX seconds, il backend è OK e le tabelle si stanno creando in automatico su MySQL!
+Se compare un messaggio simile a Started BackendApplication in X.XX seconds, il backend è avviato correttamente.
 
-3. Avvia il Frontend (React + Vite)
-Apri un nuovo terminale nella cartella frontend:
+### 3) Avvia il frontend
 
+```bash
 cd frontend
-npm install # (Solo la prima volta o se cancelli node_modules)
+npm install   # solo la prima volta
 npm run dev
+```
 
-🗄️ Configurazione MySQL
-Il progetto è configurato per creare automaticamente lo schema e le tabelle.
-Il file di configurazione è: backend/src/main/resources/application.properties.
+## Configurazione MySQL
 
-# Cambia questi valori in base alla tua installazione di MySQL!
+File di configurazione:
+
+- `backend/src/main/resources/application.properties`
+
+Esempio configurazione:
+
+```properties
 spring.datasource.url=jdbc:mysql://localhost:3306/app_template?createDatabaseIfNotExist=true&useSSL=false&serverTimezone=UTC
 spring.datasource.username=root
 spring.datasource.password=LA_TUA_PASSWORD_QUI
+```
 
-⚠️ Nota su WSL: Se il backend è su WSL e MySQL è su Windows, localhost non funziona. Trova l'IP di Windows con cat /etc/resolv.conf | grep nameserver e sostituiscilo nell'URL (es. jdbc:mysql://172.24.80.1:3306/...). Meglio ancora: installa MySQL direttamente dentro WSL.
+Nota WSL:
 
-Comandi utili MySQL da terminale:
+- Se backend è su WSL e MySQL è su Windows, `localhost` potrebbe non funzionare.
+- Recupera IP host Windows con:
 
-mysql -u root -p               # Accedi a MySQL
-SHOW DATABASES;                # Vedi se lo schema 'app_template' è stato creato
-USE app_template;              # Seleziona il DB
-SHOW TABLES;                   # Vedi le tabelle (users, contacts, products)
-SELECT * FROM users;           # Vedi gli utenti registrati dal frontend
+```bash
+cat /etc/resolv.conf | grep nameserver
+```
 
-🔗 Come comunicano Frontend e Backend
-Il Backend espone le API sulla porta 8080 (es. http://localhost:8080/api/products).
-Il Frontend chiama le API tramite il file frontend/src/api/api.ts.
-Il file api.ts contiene la variabile API_BASE_URL che punta a http://localhost:8080.
-Il blocco CORS (Importante!)
-Per motivi di sicurezza, il browser blocca le richieste tra porte diverse. Nel backend, il file SecurityConfig.java permette al frontend di comunicare:
+- Usa quell'IP nell'URL JDBC, ad esempio `jdbc:mysql://172.24.80.1:3306/...`.
+- Soluzione consigliata: installare MySQL direttamente in WSL.
 
+Comandi utili MySQL:
+
+```sql
+mysql -u root -p
+SHOW DATABASES;
+USE app_template;
+SHOW TABLES;
+SELECT * FROM users;
+```
+
+## Comunicazione Frontend-Backend
+
+- Backend API su porta `8080` (esempio: `http://localhost:8080/api/products`).
+- Frontend Vite normalmente su `5173`.
+- Base URL frontend configurata in `frontend/src/api/api.ts`.
+
+### CORS
+
+Nel backend (configurazione sicurezza), assicurati che le origin del frontend siano consentite:
+
+```java
 config.setAllowedOrigins(List.of("http://localhost:5173", "http://127.0.0.1:5173"));
+```
 
-Se cambi porta al frontend (es. passa alla 3000), devi aggiungerla qui.
+Se cambi porta frontend (es. `3000`), aggiungi anche quella origin.
 
-✏️ COME AGGIUNGERE UNA NUOVA ENTITÀ (es. "Ordini") ALL'ESAME
-Se durante l'esame ti chiedono di aggiungere una nuova entità, segui questo percorso esatto:
+## Aggiungere una nuova entità
 
-Lato Backend (Spring Boot)
-Crea il Model: backend/model/Order.java (Aggiungi @Entity, @Table, i campi e Getters/Setters).
-Crea il Repository: backend/repository/OrderRepository.java (Estendi JpaRepository<Order, Long>).
-Crea il DTO: backend/dto/OrderRequest.java (I dati che arrivano dal frontend).
-Crea il Service: backend/service/OrderService.java (Logica di salvataggio e recupero).
-Crea il Controller: backend/controller/OrderController.java (Esponi gli endpoint @GetMapping e @PostMapping su /api/orders).
-Riavvia il backend: Spring Boot creerà la tabella orders in MySQL in automatico!
+Esempio: entità Ordini.
 
-Lato Frontend (React + TS)
-1 Aggiungi il Tipo: In frontend/src/types.ts aggiungi le interfacce Order e OrderFormData.
-2 Aggiungi l'API: In frontend/src/api/api.ts aggiungi orderAPI con i metodi create e getAll.
-3 Crea la Pagina: In frontend/src/pages/OrdersPage.tsx usa orderAPI.getAll() per prendere i dati e stamparli nel JSX.
-4 Aggiungi la Rotta: In frontend/src/router.tsx aggiungi la route /orders.
-5 Aggiungi il Link: In frontend/src/components/Header.tsx aggiungi il link alla nuova pagina.
+### Backend (Spring Boot)
 
-🚨 TROUBLESHOOTING E ERRORI COMUNI (Salva-Esame)
-ERRORI MAVEN / BACKEND
+1. Crea model: `backend/src/main/java/com/esame/backend/model/Order.java` (`@Entity`, campi, getter/setter).
+2. Crea repository: `backend/src/main/java/com/esame/backend/repository/OrderRepository.java` (estende `JpaRepository<Order, Long>`).
+3. Crea DTO request: `backend/src/main/java/com/esame/backend/dto/OrderRequest.java`.
+4. Crea service: `backend/src/main/java/com/esame/backend/service/OrderService.java`.
+5. Crea controller: `backend/src/main/java/com/esame/backend/controller/OrderController.java` con endpoint `/api/orders`.
+6. Riavvia backend per creare automaticamente la tabella su MySQL.
 
-| Errore | Causa | Soluzione |
-|--------|-------|-----------|
-| `The goal you specified requires a project to execute but there is no POM` | Sei nella cartella sbagliata | Fai `cd backend` prima di lanciare comandi Maven |
-| `release version 17 not supported` | Versione di Java sbagliata (hai la 8 o 11) | Installa Java 17. Su Ubuntu: `sudo apt install openjdk-17-jdk` e impostala come default |
-| `class X is public, should be declared in a file named X.java` | Il nome del file è diverso dal nome della classe interna | Rinomina il file in modo che combaci esattamente (es. `ContanctRequest` -> `ContactRequest`) |
-| `Communications link failure` / `Connection refused` | MySQL è spento, o user/pass in `application.properties` sono sbagliate | 1. Avvia MySQL 2. Controlla user/pass nel file properties 3. Se sei su WSL leggi la sezione MySQL sopra |
-| `PasswordEncoder bean not found` | Hai rimosso la sicurezza ma il Service richiede ancora il PasswordEncoder | Assicurati che in `SecurityConfig.java` ci sia il Bean `public PasswordEncoder passwordEncoder()` |
-| `package com.esame.backend does not exist` / `cannot find symbol` | Hai rinominato le cartelle ma non gli `import` nel codice | Su VSCode: `Ctrl+Shift+H` e sostituisci tutti i `com.template.backend` con `com.esame.backend` |
-| `Whitelabel Error Page (404)` su `localhost:8080/` | Stai visitando la root, ma le API stanno su `/api/...` | Testa `localhost:8080/api/contacts` o `/api/products` |
+### Frontend (React + TypeScript)
 
-ERRORI FRONTEND / REACT
+1. Aggiungi tipi in `frontend/src/types.ts` (es. `Order`, `OrderFormData`).
+2. Aggiungi API in `frontend/src/api/api.ts` (es. `orderAPI.create`, `orderAPI.getAll`).
+3. Crea pagina `frontend/src/pages/OrdersPage.tsx`.
+4. Aggiungi route in `frontend/src/router.tsx`.
+5. Aggiungi link in header (`frontend/src/components/Header/Header.tsx`).
 
-| Errore | Causa | Soluzione |
-|--------|-------|-----------|
-| `CORS policy: No 'Access-Control-Allow-Origin' header` | Il backend blocca la richiesta del frontend | 1. Assicurati di navigare su `http://localhost:5173` e NON `127.0.0.1` 2. Aggiungi l'URL del frontend in `SecurityConfig.java` nel backend |
-| `Cannot read properties of undefined (reading 'length')` | React prova a mappare un array che è `undefined` | Nella funzione `loadData`, assicurati di fare: `setData(Array.isArray(data) ? data : [])` |
-| `Property 'data' does not exist on type` | Stai usando `response.data` ma l'API (fetch) restituisce già i dati puri | Rimuovi `.data`. Fai `const data = await api.getAll()` e usa `data` direttamente |
-| Pagina Bianca / Moduli non trovati | Dipendenze non installate | Lancia `npm install` nella cartella frontend |
-| Errori TypeScript rossi in VSCode | Server TS bloccato | `Ctrl+Shift+P` -> "TypeScript: Restart TS Server" |
+## Troubleshooting
 
-📁 Struttura del Progetto
-PROGETTO_ROOT/
-├── backend/                     # Spring Boot API
-│   ├── src/main/java/com/esame/backend/
-│   │   ├── config/              # SecurityConfig (CORS e Permessi)
-│   │   ├── controller/          # Endpoints API (Auth, Contact, Product)
-│   │   ├── dto/                 # Dati in entrata (Request)
-│   │   ├── model/               # Entità Database (@Entity)
-│   │   ├── repository/          # Interfacce per il Database
-│   │   └── service/             # Logica di Business
-│   ├── src/main/resources/
-│   │   └── application.properties # CONFIGURAZIONE DB E PORTA
-│   └── pom.xml                  # Dipendenze Java
-│
-└── frontend/                    # React + Vite + TypeScript
-    ├── src/
-    │   ├── api/api.ts           # CONFIGURAZIONE URL BACKEND
-    │   ├── components/          # Componenti UI (Header, Cards, Layout)
-    │   ├── context/             # Gestione Stato Login (AuthContext)
-    │   ├── pages/               # Pagine dell'app (Home, Dashboard, Auth)
-    │   ├── types.ts             # Tutti i modelli dati TypeScript
-    │   └── router.tsx           # Tutte le rotte dell'applicazione
-    └── package.json             # Dipendenze Node
+### Errori Backend / Maven
+
+| Errore | Causa probabile | Soluzione |
+|---|---|---|
+| `The goal you specified requires a project to execute but there is no POM` | Cartella sbagliata | Esegui prima `cd backend` |
+| `release version 17 not supported` | Java non è la 17 | Installa Java 17 e impostala come default |
+| `class X is public, should be declared in a file named X.java` | Nome file diverso dal nome classe | Rinomina il file coerentemente |
+| `Communications link failure` o `Connection refused` | MySQL spento o credenziali errate | Avvia MySQL e verifica user/password nel file properties |
+| `PasswordEncoder bean not found` | Config sicurezza incompleta | Verifica presenza bean `PasswordEncoder` |
+| `package com.esame.backend does not exist` o `cannot find symbol` | Import/pacchetti incoerenti | Allinea package e import in tutto il progetto |
+| `Whitelabel Error Page (404)` su `localhost:8080/` | Endpoint errato | Prova `/api/contacts` o `/api/products` |
+
+### Errori Frontend / React
+
+| Errore | Causa probabile | Soluzione |
+|---|---|---|
+| `CORS policy: No 'Access-Control-Allow-Origin' header` | Origin frontend non consentita | Aggiungi URL frontend alla configurazione CORS backend |
+| `Cannot read properties of undefined (reading 'length')` | Stato array non inizializzato | Usa fallback: `Array.isArray(data) ? data : []` |
+| `Property 'data' does not exist on type` | Uso stile Axios su API fetch | Usa direttamente il valore restituito da `api.getAll()` |
+| Pagina bianca / moduli mancanti | Dipendenze non installate | Esegui `npm install` in frontend |
+| Errori TypeScript persistenti in editor | TS server bloccato | Riavvia TypeScript server da command palette |
+
+## Struttura del progetto
+
+```text
+esame/
+|-- backend/
+|   |-- pom.xml
+|   `-- src/main/java/com/esame/backend/
+|       |-- config/
+|       |-- controller/
+|       |-- dto/
+|       |-- model/
+|       |-- repository/
+|       `-- service/
+`-- frontend/
+    |-- package.json
+    `-- src/
+        |-- api/
+        |-- components/
+        |-- context/
+        |-- pages/
+        |-- router.tsx
+        `-- types.ts
+```
+
+---
