@@ -85,13 +85,13 @@ cat /etc/resolv.conf | grep nameserver
 
 Comandi utili MySQL:
 
-```sql
-mysql -u root -p
-SHOW DATABASES;
-USE app_template;
-SHOW TABLES;
-SELECT * FROM users;
-```
+| Comando | A cosa serve |
+|---|---|
+| `mysql -u root -p` | Apre la shell MySQL autenticandoti come utente root. |
+| `SHOW DATABASES;` | Mostra tutti i database disponibili sul server. |
+| `USE app_template;` | Seleziona il database `app_template` su cui lavorare. |
+| `SHOW TABLES;` | Elenca tutte le tabelle presenti nel database selezionato. |
+| `SELECT * FROM users;` | Visualizza tutti i record della tabella `users` per controllo rapido dati. |
 
 ## Comunicazione Frontend-Backend
 
