@@ -1,7 +1,7 @@
 import { useState, type FormEvent, type ChangeEvent } from 'react'
 import { useNavigate } from 'react-router-dom'
-import { useAuth } from '../../context/AuthContext'
-import './Login.css'
+import { useAuth } from '../context/AuthContext'
+import '../style/Login.css'
 
 function AuthPage() {
   const [isLogin, setIsLogin] = useState(true) // true = Login, false = Register
@@ -45,15 +45,15 @@ function AuthPage() {
   }
 
   return (
-    <div className="page">
-      <div className="container">
-        <h1 className="title">{isLogin ? '🔐 Login' : '📝 Registrati'}</h1>
+    <div className="auth-page">
+      <div className="auth-page__container">
+        <h1 className="auth-page__title">{isLogin ? '🔐 Login' : '📝 Registrati'}</h1>
         
-        {feedback && <div className="feedback">{feedback}</div>}
+        {feedback && <div className="auth-page__feedback">{feedback}</div>}
 
-        <form onSubmit={handleSubmit} className="form">
-          <div className="field">
-            <label className="label">Username</label>
+        <form onSubmit={handleSubmit} className="auth-page__form">
+          <div className="auth-page__field">
+            <label className="auth-page__label">Username</label>
             <input 
               type="text" 
               name="username" 
@@ -61,29 +61,29 @@ function AuthPage() {
               onChange={handleChange} 
               required 
               minLength={3}
-              className="input" 
+              className="auth-page__input" 
               placeholder="Il tuo username" 
             />
           </div>
           
           {/* Mostra il campo Email solo se siamo in modalità Registrazione */}
           {!isLogin && (
-            <div className="field">
-              <label className="label">Email</label>
+            <div className="auth-page__field">
+              <label className="auth-page__label">Email</label>
               <input 
                 type="email" 
                 name="email" 
                 value={form.email} 
                 onChange={handleChange} 
                 required 
-                className="input" 
+                className="auth-page__input" 
                 placeholder="La tua email" 
               />
             </div>
           )}
 
-          <div className="field">
-            <label className="label">Password</label>
+          <div className="auth-page__field">
+            <label className="auth-page__label">Password</label>
             <input 
               type="password" 
               name="password" 
@@ -91,19 +91,19 @@ function AuthPage() {
               onChange={handleChange} 
               required 
               minLength={6}
-              className="input" 
+              className="auth-page__input" 
               placeholder="Minimo 6 caratteri" 
             />
           </div>
 
-          <button type="submit" disabled={loading} className="button">
+          <button type="submit" disabled={loading} className="auth-page__submit">
             {loading ? 'Attendi...' : (isLogin ? 'Accedi' : 'Crea Account')}
           </button>
         </form>
 
-        <p className="toggleText">
+        <p className="auth-page__toggle-text">
           {isLogin ? "Non hai un account?" : "Hai già un account?"}
-          <button onClick={toggleMode} className="toggleButton">
+          <button onClick={toggleMode} className="auth-page__toggle-button">
             {isLogin ? 'Registrati' : 'Accedi'}
           </button>
         </p>

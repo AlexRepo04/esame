@@ -1,12 +1,11 @@
-.hero {
+.hero-banner {
   position: relative;
-  min-height: clamp(420px, 72vh, 680px);
+  min-height: 680px;
   display: flex;
   align-items: center;
   justify-content: center;
   text-align: center;
   color: var(--text-light);
-  border-radius: 22px;
   overflow: hidden;
   isolation: isolate;
   background-image:
@@ -17,7 +16,7 @@
   box-shadow: var(--shadow-md);
 }
 
-.hero::before {
+.hero-banner::before {
   content: '';
   position: absolute;
   inset: 0;
@@ -27,20 +26,19 @@
   z-index: -1;
 }
 
-.content {
+.hero-banner__content {
   max-width: 800px;
   padding: 2rem 1.5rem;
 }
 
-.title {
+.hero-banner__title {
   font-size: clamp(2rem, 4.3vw, 3.55rem);
   margin-bottom: 1rem;
   line-height: 1.06;
   color: #fefefe;
-  text-wrap: balance;
 }
 
-.subtitle {
+.hero-banner__subtitle {
   font-size: clamp(1rem, 1.7vw, 1.28rem);
   margin-bottom: 1.9rem;
   color: #f7efe8;
@@ -48,11 +46,11 @@
   text-wrap: pretty;
 }
 
-.ctaButton {
+.hero-banner__cta {
   background: linear-gradient(140deg, #f7b781, var(--color-accent));
   color: #1c2f4d;
   padding: 0.86rem 2rem;
-  border-radius: 999px;
+  border-radius: 30px;
   font-size: 1rem;
   font-weight: 700;
   border: none;
@@ -60,17 +58,17 @@
   transition: transform 0.2s, filter 0.2s;
 }
 
-.ctaButton:hover {
+.hero-banner__cta:hover {
   transform: translateY(-2px) scale(1.01);
   filter: brightness(1.04);
 }
 
 @media (max-width: 768px) {
-  .hero {
+  .hero-banner {
     border-radius: 16px;
   }
 
-  .content {
+  .hero-banner__content {
     padding: 1.6rem 1rem;
   }
 }

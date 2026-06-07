@@ -10,13 +10,13 @@ function Hero() {
   }
 
   return (
-    <section className="hero">
-      <div className="content">
-        <h1 className="title">Crea il tuo prossimo progetto con successo</h1>
-        <p className="subtitle">
+    <section className="hero-banner">
+      <div className="hero-banner__content">
+        <h1 className="hero-banner__title">Crea il tuo prossimo progetto con successo</h1>
+        <p className="hero-banner__subtitle">
           Un template moderno, reattivo e pronto per la produzione. Connettiamo frontend e backend senza stress.
         </p>
-        <button onClick={scrollToForm} className="ctaButton">
+        <button onClick={scrollToForm} className="hero-banner__cta">
           Inizia Ora
         </button>
       </div>

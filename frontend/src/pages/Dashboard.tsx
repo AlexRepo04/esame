@@ -1,8 +1,8 @@
 import { useState, useEffect } from 'react'
-import { contactAPI } from '../../api/api'
-import { useAuth } from '../../context/AuthContext'
-import type { Contact } from '../../types'
-import './Dashboard.css'
+import { contactAPI } from '../api/api'
+import { useAuth } from '../context/AuthContext'
+import type { Contact } from '../types'
+import '../style/Dashboard.css'
 
 function Dashboard() {
   const [contacts, setContacts] = useState<Contact[]>([])
@@ -30,33 +30,33 @@ function Dashboard() {
   }
 
   return (
-    <div className="page">
-      <h1 className="title">📊 Dashboard</h1>
-      <p className="welcome">
+    <div className="dashboard-page">
+      <h1 className="dashboard-page__title">📊 Dashboard</h1>
+      <p className="dashboard-page__welcome">
         Benvenuto, <strong>{user?.username}</strong>!
       </p>
 
       {loading && <p style={{ color: '#888' }}>Caricamento contatti...</p>}
-      {error && <div className="error">{error}</div>}
+      {error && <div className="dashboard-page__error">{error}</div>}
 
       {!loading && !error && contacts.length === 0 && (
-        <div className="empty">
+        <div className="dashboard-page__empty">
           <p>Nessun messaggio ricevuto.</p>
         </div>
       )}
 
       {!loading && contacts.length > 0 && (
         <div>
-          <h2 className="subtitle">📩 Messaggi ricevuti ({contacts.length})</h2>
+          <h2 className="dashboard-page__subtitle">📩 Messaggi ricevuti ({contacts.length})</h2>
           {contacts.map((contact) => (
-            <div key={contact.id} className="card">
-              <div className="cardHeader">
+            <div key={contact.id} className="dashboard-card">
+              <div className="dashboard-card__header">
                 <strong>{contact.name}</strong>
-                <span className="date">{new Date(contact.createdAt).toLocaleString('it-IT')}</span>
+                <span className="dashboard-card__date">{new Date(contact.createdAt).toLocaleString('it-IT')}</span>
               </div>
-              <div className="cardEmail">{contact.email}</div>
-              {contact.subject && <div className="cardSubject">📌 {contact.subject}</div>}
-              <div className="cardMessage">{contact.message}</div>
+              <div className="dashboard-card__email">{contact.email}</div>
+              {contact.subject && <div className="dashboard-card__subject">📌 {contact.subject}</div>}
+              <div className="dashboard-card__message">{contact.message}</div>
             </div>
           ))}
         </div>

@@ -1,22 +1,22 @@
-.section {
+.contact {
   padding: 4.6rem 0.3rem;
   background: linear-gradient(180deg, rgba(237, 247, 244, 0.75), rgba(248, 250, 248, 0.75));
   border-radius: 22px;
 }
 
-.container {
+.contact__container {
   width: min(680px, calc(100% - 1.2rem));
   margin: 0 auto;
 }
 
-.title {
+.contact__title {
   text-align: center;
   font-size: clamp(1.8rem, 2.3vw, 2.25rem);
   color: var(--text-main);
   margin-bottom: 1.3rem;
 }
 
-.form {
+.contact__form {
   background: var(--bg-surface);
   padding: clamp(1.25rem, 3vw, 2rem);
   border-radius: 18px;
@@ -24,11 +24,11 @@
   box-shadow: var(--shadow-sm);
 }
 
-.field {
+.contact__field {
   margin-bottom: 1rem;
 }
 
-.label {
+.contact__label {
   display: block;
   margin-bottom: 0.42rem;
   font-weight: 600;
@@ -36,7 +36,7 @@
   color: var(--text-main);
 }
 
-.input {
+.contact__input {
   width: 100%;
   padding: 0.75rem 0.9rem;
   border: 1px solid var(--border-color);
@@ -47,18 +47,18 @@
   transition: border-color 0.2s, box-shadow 0.2s;
 }
 
-.input:focus {
+.contact__input:focus {
   border-color: var(--color-primary);
   box-shadow: 0 0 0 3px rgba(15, 118, 110, 0.14);
   outline: none;
 }
 
-.textarea {
+.contact__textarea {
   resize: vertical;
   min-height: 120px;
 }
 
-.button {
+.contact__submit {
   width: 100%;
   padding: 0.82rem;
   background: linear-gradient(135deg, var(--color-primary), var(--color-primary-strong));
@@ -71,17 +71,17 @@
   transition: transform 0.2s, filter 0.2s;
 }
 
-.button:hover:not(:disabled) {
+.contact__submit:hover:not(:disabled) {
   transform: translateY(-1px);
   filter: brightness(1.04);
 }
 
-.button:disabled {
+.contact__submit:disabled {
   opacity: 0.6;
   cursor: not-allowed;
 }
 
-.feedback {
+.contact__feedback {
   padding: 0.72rem 0.85rem;
   border-radius: var(--border-radius);
   margin-bottom: 0.95rem;
@@ -89,30 +89,20 @@
   font-weight: 500;
 }
 
-.success {
-  padding: 0.72rem 0.85rem;
-  border-radius: var(--border-radius);
-  margin-bottom: 0.95rem;
-  font-size: 0.86rem;
-  font-weight: 500;
+.contact__feedback--success {
   background-color: var(--color-success-bg);
   color: var(--color-success-text);
   border: 1px solid var(--color-success-border);
 }
 
-.error {
-  padding: 0.72rem 0.85rem;
-  border-radius: var(--border-radius);
-  margin-bottom: 0.95rem;
-  font-size: 0.86rem;
-  font-weight: 500;
+.contact__feedback--error {
   background-color: var(--color-error-bg);
   color: var(--color-error-text);
   border: 1px solid var(--color-error-border);
 }
 
 @media (max-width: 640px) {
-  .section {
+  .contact {
     padding: 3.1rem 0.15rem;
     border-radius: 16px;
   }

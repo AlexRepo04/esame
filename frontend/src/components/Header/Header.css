@@ -1,4 +1,4 @@
-.header {
+.site-header {
   position: sticky;
   top: 0;
   z-index: 1000;
@@ -8,7 +8,7 @@
   box-shadow: 0 10px 24px rgba(20, 33, 61, 0.26);
 }
 
-.container {
+.site-header__inner {
   width: min(1180px, calc(100% - 2.5rem));
   margin: 0 auto;
   display: flex;
@@ -18,7 +18,7 @@
   padding: 0.55rem 0;
 }
 
-.logo {
+.site-header__brand {
   color: var(--text-light);
   font-size: 1.42rem;
   font-weight: 700;
@@ -28,13 +28,13 @@
   letter-spacing: 0.01em;
 }
 
-.nav {
+.site-header__nav {
   display: flex;
   align-items: center;
   gap: 1.1rem;
 }
 
-.navLink {
+.site-header__link {
   color: rgba(249, 251, 255, 0.94);
   font-size: 0.96rem;
   font-weight: 600;
@@ -43,27 +43,27 @@
   transition: color 0.2s, background-color 0.2s;
 }
 
-.navLink:hover {
+.site-header__link:hover {
   color: #ffffff;
   background-color: rgba(255, 255, 255, 0.14);
 }
 
-.userInfo {
+.site-header__user {
   display: flex;
   align-items: center;
   gap: 0.75rem;
 }
 
-.userBadge {
+.site-header__badge {
   color: #e9f8f4;
-  background: linear-gradient(135deg, rgba(15, 118, 110, 0.95), rgba(13, 95, 89, 0.95));
+  background: var(--color-primary);
   padding: 0.42rem 0.82rem;
   border-radius: 999px;
   font-size: 0.78rem;
   font-weight: 700;
 }
 
-.btnLogin {
+.site-header__login-btn {
   background: linear-gradient(140deg, var(--color-accent), #f7b781);
   color: #1c2f4d;
   border: none;
@@ -74,12 +74,12 @@
   transition: transform 0.2s, filter 0.2s;
 }
 
-.btnLogin:hover {
+.site-header__login-btn:hover {
   transform: translateY(-1px);
   filter: brightness(1.04);
 }
 
-.btnLogout {
+.site-header__logout-btn {
   background-color: transparent;
   color: #ffd5b5;
   border: 1px solid rgba(255, 213, 181, 0.68);
@@ -90,47 +90,47 @@
   transition: background-color 0.2s, color 0.2s;
 }
 
-.btnLogout:hover {
+.site-header__logout-btn:hover {
   background-color: rgba(255, 213, 181, 0.16);
   color: #fff2e7;
 }
 
 @media (max-width: 900px) {
-  .container {
+  .site-header__inner {
     width: min(1180px, calc(100% - 1.25rem));
     gap: 0.75rem;
     min-height: 68px;
   }
 
-  .logo {
+  .site-header__brand {
     font-size: 1.2rem;
   }
 
-  .nav {
+  .site-header__nav {
     gap: 0.5rem;
     flex-wrap: wrap;
     justify-content: flex-end;
   }
 
-  .userInfo {
+  .site-header__user {
     gap: 0.45rem;
     flex-wrap: wrap;
     justify-content: flex-end;
   }
 
-  .userBadge {
+  .site-header__badge {
     font-size: 0.72rem;
   }
 }
 
 @media (max-width: 640px) {
-  .container {
+  .site-header__inner {
     flex-direction: column;
     align-items: flex-start;
     padding: 0.75rem 0;
   }
 
-  .nav {
+  .site-header__nav {
     width: 100%;
     justify-content: space-between;
   }

@@ -1,22 +1,22 @@
-.page {
+.dashboard-page {
   max-width: 920px;
   margin: 0 auto;
   padding: 1.4rem 0.35rem 2rem;
 }
 
-.title {
+.dashboard-page__title {
   font-size: clamp(1.9rem, 2.8vw, 2.4rem);
   color: var(--text-main);
   margin-bottom: 0.35rem;
 }
 
-.welcome {
+.dashboard-page__welcome {
   color: var(--text-muted);
   margin-bottom: 1.2rem;
   font-size: 1.02rem;
 }
 
-.error {
+.dashboard-page__error {
   background-color: var(--color-error-bg);
   color: var(--color-error-text);
   padding: 0.72rem 0.9rem;
@@ -24,7 +24,7 @@
   border: 1px solid var(--color-error-border);
 }
 
-.empty {
+.dashboard-page__empty {
   text-align: center;
   color: var(--text-muted);
   padding: 2.6rem 1.2rem;
@@ -33,13 +33,13 @@
   border: 1px solid #d2e5dd;
 }
 
-.subtitle {
+.dashboard-page__subtitle {
   font-size: 1.18rem;
   color: var(--text-main);
   margin-bottom: 0.9rem;
 }
 
-.card {
+.dashboard-card {
   background: linear-gradient(170deg, #ffffff, #f9fcfb);
   padding: 1rem;
   border-radius: 16px;
@@ -48,7 +48,7 @@
   box-shadow: var(--shadow-sm);
 }
 
-.cardHeader {
+.dashboard-card__header {
   display: flex;
   justify-content: space-between;
   align-items: flex-start;
@@ -58,25 +58,25 @@
   padding-bottom: 0.58rem;
 }
 
-.date {
+.dashboard-card__date {
   font-size: 0.75rem;
   color: var(--text-muted);
 }
 
-.cardEmail {
+.dashboard-card__email {
   font-size: 0.8rem;
   color: var(--color-primary);
   margin-bottom: 0.32rem;
 }
 
-.cardSubject {
+.dashboard-card__subject {
   font-size: 0.97rem;
-  color: var(--color-secondary);
+  color: var(--color-deep);
   margin-bottom: 0.48rem;
   font-weight: 700;
 }
 
-.cardMessage {
+.dashboard-card__message {
   font-size: 0.92rem;
   color: var(--text-main);
   background: #f4f9f7;
@@ -86,11 +86,11 @@
 }
 
 @media (max-width: 640px) {
-  .page {
+  .dashboard-page {
     padding-top: 0.95rem;
   }
 
-  .cardHeader {
+  .dashboard-card__header {
     flex-direction: column;
   }
 }

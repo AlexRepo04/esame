@@ -6,24 +6,25 @@ function Header() {
   const { user, logout } = useAuth()
 
   return (
-    <header className="header">
-      <div className="container">
-        <Link to="/" className="logo">
-          🚀 Template
+    <header className="site-header">
+      <div className="site-header__inner">
+        <Link to="/" className="site-header__brand">
+          <img src="/path/to/logo.png" alt="Logo" />
+          <p>Template</p> 
         </Link>
         
-        <nav className="nav">
-          <Link to="/" className="navLink">Home</Link>
-          <Link to="/products" className="navLink">Prodotti</Link> {/* <-- AGGIUNTO */}
+        <nav className="site-header__nav">
+          <Link to="/" className="site-header__link">Home</Link>
+          <Link to="/products" className="site-header__link">Prodotti</Link>
 
           {user ? (
-            <div className="userInfo">
-              <Link to="/dashboard" className="navLink">Dashboard</Link>
-              <span className="userBadge">👤 {user.username}</span>
-              <button onClick={logout} className="btnLogout">Logout</button>
+            <div className="site-header__user">
+              <Link to="/dashboard" className="site-header__link">Dashboard</Link>
+              <span className="site-header__badge">👤 {user.username}</span>
+              <button onClick={logout} className="site-header__logout-btn">Logout</button>
             </div>
           ) : (
-            <Link to="/login" className="btnLogin">
+            <Link to="/login" className="site-header__login-btn">
               Login / Registrati
             </Link>
           )}

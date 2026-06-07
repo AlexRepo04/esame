@@ -1,4 +1,4 @@
-.page {
+.auth-page {
   min-height: calc(100vh - 74px);
   display: flex;
   justify-content: center;
@@ -7,20 +7,20 @@
   border-radius: 22px;
 }
 
-.container {
+.auth-page__container {
   width: 100%;
   max-width: 510px;
   padding: 1rem;
 }
 
-.title {
+.auth-page__title {
   font-size: clamp(1.8rem, 2.8vw, 2.2rem);
   color: var(--text-main);
   margin-bottom: 1rem;
   text-align: center;
 }
 
-.form {
+.auth-page__form {
   background: var(--bg-surface);
   padding: clamp(1.2rem, 3vw, 2rem);
   border-radius: 18px;
@@ -28,11 +28,11 @@
   box-shadow: var(--shadow-sm);
 }
 
-.field {
+.auth-page__field {
   margin-bottom: 1rem;
 }
 
-.label {
+.auth-page__label {
   display: block;
   margin-bottom: 0.42rem;
   font-weight: 600;
@@ -40,7 +40,7 @@
   color: var(--text-main);
 }
 
-.input {
+.auth-page__input {
   width: 100%;
   padding: 0.75rem 0.9rem;
   border: 1px solid var(--border-color);
@@ -50,13 +50,13 @@
   transition: border-color 0.2s, box-shadow 0.2s;
 }
 
-.input:focus {
+.auth-page__input:focus {
   border-color: var(--color-primary);
   box-shadow: 0 0 0 3px rgba(15, 118, 110, 0.14);
   outline: none;
 }
 
-.button {
+.auth-page__submit {
   width: 100%;
   padding: 0.82rem;
   background: linear-gradient(135deg, var(--color-primary), var(--color-primary-strong));
@@ -69,16 +69,16 @@
   transition: transform 0.2s, filter 0.2s;
 }
 
-.button:hover:not(:disabled) {
+.auth-page__submit:hover:not(:disabled) {
   transform: translateY(-1px);
   filter: brightness(1.04);
 }
 
-.button:disabled {
+.auth-page__submit:disabled {
   opacity: 0.6;
 }
 
-.feedback {
+.auth-page__feedback {
   padding: 0.72rem 0.85rem;
   border-radius: var(--border-radius);
   margin-bottom: 1rem;
@@ -88,14 +88,14 @@
   border: 1px solid var(--color-error-border);
 }
 
-.toggleText {
+.auth-page__toggle-text {
   text-align: center;
   margin-top: 1rem;
   color: var(--text-muted);
   font-size: 0.93rem;
 }
 
-.toggleButton {
+.auth-page__toggle-button {
   background: none;
   border: none;
   color: var(--color-primary);
@@ -107,13 +107,13 @@
   transition: color 0.2s;
 }
 
-.toggleButton:hover {
+.auth-page__toggle-button:hover {
   color: var(--color-primary-strong);
   text-decoration: underline;
 }
 
 @media (max-width: 640px) {
-  .page {
+  .auth-page {
     border-radius: 16px;
   }
 }
