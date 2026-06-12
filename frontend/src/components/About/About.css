@@ -1,0 +1,17 @@
+.about-section {
+  display: flex;
+  color: var(--text-main);
+  text-align: center;
+  max-width: 1510px;
+  padding: 69px;
+  flex-direction: column;
+  align-items: center;
+}
+
+.about-title {
+  font-size: 32px;
+}
+
+.about-desc {
+  max-width: 400px;
+}

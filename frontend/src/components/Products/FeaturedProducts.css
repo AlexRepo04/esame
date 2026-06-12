@@ -1,5 +1,5 @@
 .section {
-  padding: 80px 20px;
+  padding: 50px 20px;
   background-color: var(--bg-section-alt);
 }
 
@@ -28,7 +28,9 @@
   padding: 30px;
   text-align: center;
   box-shadow: var(--box-shadow);
-  transition: transform 0.2s, box-shadow 0.2s;
+  transition:
+    transform 0.2s,
+    box-shadow 0.2s;
   display: flex;
   flex-direction: column;
   gap: 15px;
