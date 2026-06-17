@@ -5,14 +5,12 @@ const API_BASE_URL = 'http://localhost:8080'
 // Funzione di supporto per le chiamate API con fetch
 async function apiRequest<T>(endpoint: string, options: RequestInit = {}): Promise<T> {
   const token = localStorage.getItem('token')
-  
-  const headers: HeadersInit = {
-    'Content-Type': 'application/json',
-    ...(options.headers || {}),
-  }
+
+  const headers = new Headers(options.headers)
+  headers.set('Content-Type', 'application/json')
 
   if (token) {
-    headers['Authorization'] = `Bearer ${token}`
+    headers.set('Authorization', `Bearer ${token}`)
   }
 
   const response = await fetch(`${API_BASE_URL}${endpoint}`, {
@@ -71,4 +69,9 @@ export const productAPI = {
     }),
     
   getAll: () => apiRequest<Product[]>('/api/products'),
+
+  delete: (id: number) =>
+    apiRequest<GenericResponse>(`/api/products/${id}`, {
+      method: 'DELETE',
+    }),
 }

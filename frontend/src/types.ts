@@ -30,6 +30,7 @@ export interface Product {
   title: string;
   description: string;
   price: number;
+  imageUrl?: string;
   createdAt: string;
 }
 
@@ -37,4 +38,5 @@ export interface ProductFormData {
   title: string;
   description: string;
   price: number;
+  imageUrl?: string;
 }

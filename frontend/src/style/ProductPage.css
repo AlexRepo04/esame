@@ -9,24 +9,9 @@
   margin-bottom: 0.5rem;
 }
 
-.products-page__grid {
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
-  gap: 1rem;
+.products-page__cards {
   margin: 1rem 0 1.5rem;
 }
-
-.product-card {
-  background: #fff;
-  border: 1px solid #e3efea;
-  border-radius: 12px;
-  padding: 0.9rem;
-  box-shadow: 0 8px 20px rgba(17,24,39,0.04);
-}
-
-.product-card__title { font-weight: 700; margin-bottom: 0.35rem; }
-.product-card__desc { color: #51647a; font-size: 0.95rem; margin-bottom: 0.6rem; }
-.product-card__price { color: #0f766e; font-weight: 700; }
 
 .products-page__form-section { margin-top: 1.5rem; background: #f8faf8; padding: 1rem; border-radius: 12px; border: 1px solid #e6f0eb; }
 .products-page__form { display: grid; gap: 0.6rem; grid-template-columns: 1fr; }

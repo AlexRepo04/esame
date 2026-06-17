@@ -29,4 +29,10 @@ public class ProductController {
     public ResponseEntity<List<Product>> getAllProducts() {
         return ResponseEntity.ok(productService.getAllProducts());
     }
+
+    @DeleteMapping("/{id}")
+    public ResponseEntity<GenericResponse> deleteProduct(@PathVariable Long id) {
+        productService.deleteProduct(id);
+        return ResponseEntity.ok(GenericResponse.ok("Prodotto eliminato con successo!"));
+    }
 }
