@@ -1,6 +1,7 @@
 import { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
 import { productAPI } from "../../api/api";
+import { useAuth } from "../../context/AuthContext";
 import type { Product } from "../../types";
 import ProductCards from "../ProductCards/ProductCards";
 import "./FeaturedProducts.css";
@@ -13,6 +14,7 @@ interface FeaturedProductsProps {
 function FeaturedProducts({ limit = 3 }: FeaturedProductsProps) {
   const [products, setProducts] = useState<Product[]>([]);
   const [loading, setLoading] = useState(true);
+  const { user } = useAuth();
 
   useEffect(() => {
     const fetchProducts = async () => {
@@ -43,10 +45,15 @@ function FeaturedProducts({ limit = 3 }: FeaturedProductsProps) {
 
         {!loading && displayedProducts.length === 0 && (
           <p className="featured-products__empty">
-            Nessun prodotto disponibile.{" "}
-            <Link to="/products" className="featured-products__empty-link">
-              Aggiungine uno!
-            </Link>
+            Nessun prodotto disponibile.
+            {user && (
+              <>
+                {" "}
+                <Link to="/products" className="featured-products__empty-link">
+                  Aggiungine uno!
+                </Link>
+              </>
+            )}
           </p>
         )}
 

@@ -3,7 +3,7 @@
   display: flex;
   justify-content: center;
   align-items: center;
-  background: linear-gradient(170deg, rgba(237, 247, 244, 0.8), rgba(248, 250, 248, 0.8));
+  background: var(--bg-panel-gradient);
   border-radius: 22px;
 }
 
@@ -24,7 +24,7 @@
   background: var(--bg-surface);
   padding: clamp(1.2rem, 3vw, 2rem);
   border-radius: 18px;
-  border: 1px solid #d7e4df;
+  border: 1px solid var(--border-color);
   box-shadow: var(--shadow-sm);
 }
 
@@ -46,21 +46,21 @@
   border: 1px solid var(--border-color);
   border-radius: var(--border-radius);
   font-size: 0.97rem;
-  background-color: #fcfffe;
+  background-color: var(--bg-field);
   transition: border-color 0.2s, box-shadow 0.2s;
 }
 
 .auth-page__input:focus {
   border-color: var(--color-primary);
-  box-shadow: 0 0 0 3px rgba(15, 118, 110, 0.14);
+  box-shadow: 0 0 0 3px var(--focus-ring);
   outline: none;
 }
 
 .auth-page__submit {
   width: 100%;
   padding: 0.82rem;
-  background: linear-gradient(135deg, var(--color-primary), var(--color-primary-strong));
-  color: #ecf9f5;
+  background: var(--bg-button-gradient);
+  color: var(--text-light);
   border: none;
   border-radius: 12px;
   font-size: 0.96rem;

@@ -3,13 +3,9 @@
   top: 0;
   z-index: 1000;
   backdrop-filter: blur(10px);
-  background: linear-gradient(
-    120deg,
-    rgba(20, 33, 61, 0.94),
-    rgba(31, 51, 88, 0.9)
-  );
-  border-bottom: 1px solid rgba(255, 255, 255, 0.1);
-  box-shadow: 0 10px 24px rgba(20, 33, 61, 0.26);
+  background: var(--bg-dark-gradient);
+  border-bottom: 1px solid var(--border-on-dark);
+  box-shadow: 0 10px 24px var(--shadow-color-strong);
 }
 
 .site-header__inner {
@@ -39,7 +35,7 @@
 }
 
 .site-header__link {
-  color: rgba(249, 251, 255, 0.94);
+  color: var(--text-on-dark-muted);
   font-size: 0.96rem;
   font-weight: 600;
   padding: 0.45rem 0.55rem;
@@ -50,8 +46,8 @@
 }
 
 .site-header__link:hover {
-  color: #ffffff;
-  background-color: rgba(255, 255, 255, 0.14);
+  color: var(--text-light);
+  background-color: var(--overlay-light);
 }
 
 .site-header__user {
@@ -65,7 +61,7 @@
 }
 
 .site-header__badge {
-  color: #e9f8f4;
+  color: var(--text-light);
   background: var(--color-primary);
   padding: 0.42rem 0.82rem;
   border-radius: 999px;
@@ -74,8 +70,8 @@
 }
 
 .site-header__login-btn {
-  background: linear-gradient(140deg, var(--color-accent), #f7b781);
-  color: #1c2f4d;
+  background: var(--bg-accent-gradient);
+  color: var(--text-on-accent);
   border: none;
   padding: 0.6rem 1.05rem;
   border-radius: 999px;
@@ -93,8 +89,8 @@
 
 .site-header__logout-btn {
   background-color: transparent;
-  color: #ffd5b5;
-  border: 1px solid rgba(255, 213, 181, 0.68);
+  color: var(--color-accent);
+  border: 1px solid var(--border-color-strong);
   padding: 0.42rem 0.8rem;
   border-radius: 999px;
   font-size: 0.76rem;
@@ -105,8 +101,8 @@
 }
 
 .site-header__logout-btn:hover {
-  background-color: rgba(255, 213, 181, 0.16);
-  color: #fff2e7;
+  background-color: var(--overlay-light);
+  color: var(--text-light);
 }
 
 @media (max-width: 900px) {

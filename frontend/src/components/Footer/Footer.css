@@ -1,7 +1,7 @@
 .site-footer {
   background:
-    linear-gradient(160deg, rgba(20, 33, 61, 0.96), rgba(31, 51, 88, 0.94)),
-    radial-gradient(circle at 10% 10%, rgba(255, 255, 255, 0.08), transparent 45%);
+    var(--bg-dark-gradient),
+    radial-gradient(circle at 10% 10%, var(--overlay-light), transparent 45%);
   color: var(--text-light);
   padding: 2.8rem 1rem 1.1rem;
   margin-top: auto;
@@ -19,7 +19,7 @@
 .site-footer__brand {
   font-size: 1.22rem;
   font-weight: 700;
-  color: #ffe5d0;
+  color: var(--color-accent);
 }
 
 .site-footer__links {
@@ -30,25 +30,25 @@
 }
 
 .site-footer__link {
-  color: rgba(249, 251, 255, 0.9);
+  color: var(--text-on-dark-muted);
   font-size: 0.84rem;
   font-weight: 600;
-  border: 1px solid rgba(255, 255, 255, 0.16);
+  border: 1px solid var(--border-on-dark);
   padding: 0.38rem 0.75rem;
   border-radius: 999px;
   transition: color 0.2s, background-color 0.2s, border-color 0.2s;
 }
 
 .site-footer__link:hover {
-  color: #fff8f2;
-  background-color: rgba(255, 255, 255, 0.12);
-  border-color: rgba(255, 255, 255, 0.28);
+  color: var(--text-light);
+  background-color: var(--overlay-light);
+  border-color: var(--border-on-dark-strong);
 }
 
 .site-footer__copyright {
   font-size: 0.76rem;
-  color: rgba(255, 244, 235, 0.8);
-  border-top: 1px solid rgba(255, 255, 255, 0.12);
+  color: var(--text-on-dark-muted);
+  border-top: 1px solid var(--border-on-dark);
   padding-top: 1rem;
   width: 100%;
   text-align: center;

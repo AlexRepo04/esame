@@ -4,6 +4,21 @@ import { useAuth } from "../context/AuthContext";
 import type { Contact } from "../types";
 import "../style/Dashboard.css";
 
+async function fetchContacts() {
+  try {
+    const data = await contactAPI.getAll();
+    return {
+      contacts: Array.isArray(data) ? data : [],
+      error: null,
+    };
+  } catch {
+    return {
+      contacts: [],
+      error: "Errore nel caricamento dei contatti",
+    };
+  }
+}
+
 function Dashboard() {
   const [contacts, setContacts] = useState<Contact[]>([]);
   const [loading, setLoading] = useState(true);
@@ -11,23 +26,22 @@ function Dashboard() {
   const { user } = useAuth();
 
   useEffect(() => {
-    loadContacts();
-  }, []);
+    let isMounted = true;
 
-  const loadContacts = async () => {
-    try {
-      // L'API ti restituisce già l'array diretto, niente .data!
-      const data = await contactAPI.getAll();
+    fetchContacts().then((result) => {
+      if (!isMounted) {
+        return;
+      }
 
-      // Ultra-sicurezza: controlliamo che sia un array, se no diamo un array vuoto
-      setContacts(Array.isArray(data) ? data : []);
-    } catch {
-      setError("Errore nel caricamento dei contatti");
-      setContacts([]); // Previene il crash se la chiamata fallisce
-    } finally {
+      setContacts(result.contacts);
+      setError(result.error);
       setLoading(false);
-    }
-  };
+    });
+
+    return () => {
+      isMounted = false;
+    };
+  }, []);
 
   return (
     <div className="dashboard-page">
@@ -36,7 +50,9 @@ function Dashboard() {
         Benvenuto, <strong>{user?.username}</strong>!
       </p>
 
-      {loading && <p style={{ color: "#888" }}>Caricamento contatti...</p>}
+      {loading && (
+        <p className="dashboard-page__loading">Caricamento contatti...</p>
+      )}
       {error && <div className="dashboard-page__error">{error}</div>}
 
       {!loading && !error && contacts.length === 0 && (

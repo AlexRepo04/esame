@@ -115,59 +115,66 @@ function ProductsPage() {
       <h1 className="products-page__title">I Nostri Prodotti</h1>
 
       {/* Cards dinamiche dal Backend */}
-      <ProductCards
-        products={products}
-        className="products-page__cards"
-        canDelete={Boolean(user)}
-        deletingProductId={deletingProductId}
-        onDelete={handleDelete}
-      />
+      {products.length > 0 ? (
+        <ProductCards
+          products={products}
+          className="products-page__cards"
+          canDelete={Boolean(user)}
+          deletingProductId={deletingProductId}
+          onDelete={handleDelete}
+        />
+      ) : (
+        <p className="products-page__empty">Nessun prodotto disponibile.</p>
+      )}
 
       {/* Form per aggiungere prodotto */}
-      <div className="products-page__form-section">
-        <h2>Aggiungi Prodotto</h2>
-        <form onSubmit={handleSubmit} className="products-page__form">
-          <Input
-            label="Titolo"
-            type="text"
-            name="title"
-            value={form.title}
-            onChange={handleChange}
-            placeholder="Nome prodotto"
-            required
-          />
-          <Input
-            label="Descrizione"
-            type="text"
-            name="description"
-            value={form.description}
-            onChange={handleChange}
-            placeholder="Descrizione prodotto"
-          />
-          <Input
-            label="Prezzo (€)"
-            type="number"
-            name="price"
-            value={form.price}
-            onChange={handleChange}
-            placeholder="0.00"
-            required
-          />
+      {user && (
+        <div className="products-page__form-section">
+          <h2>Aggiungi Prodotto</h2>
+          <form onSubmit={handleSubmit} className="products-page__form">
+            <Input
+              label="Titolo"
+              type="text"
+              name="title"
+              value={form.title}
+              onChange={handleChange}
+              placeholder="Nome prodotto"
+              required
+            />
+            <Input
+              label="Descrizione"
+              type="text"
+              name="description"
+              value={form.description}
+              onChange={handleChange}
+              placeholder="Descrizione prodotto"
+            />
+            <Input
+              label="Prezzo (€)"
+              type="number"
+              name="price"
+              value={form.price}
+              min={1}
+              onChange={handleChange}
+              placeholder="0.00"
+              required
+            />
 
-          <Input
-            label="URL Immagine"
-            type="text"
-            name="imageUrl"
-            value={form.imageUrl || ""}
-            onChange={handleChange}
-            placeholder="https://sito.com/immagine.jpg"
-          />
+            <Input
+              label="URL Immagine"
+              type="text"
+              name="imageUrl"
+              value={form.imageUrl || ""}
+              onChange={handleChange}
+              placeholder="https://sito.com/immagine.jpg"
+            />
 
-          <Button disabled={loading}>
-            {loading ? "Salvataggio..." : "Crea Prodotto"}
-          </Button>
-        </form>
-      </div>
+            <Button disabled={loading}>
+              {loading ? "Salvataggio..." : "Crea Prodotto"}
+            </Button>
+          </form>
+        </div>
+      )}
     </div>
   );
 }

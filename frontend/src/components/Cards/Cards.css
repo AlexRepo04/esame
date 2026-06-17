@@ -22,8 +22,8 @@
 }
 
 .card {
-  background: linear-gradient(170deg, #ffffff 0%, #f9fcfb 100%);
-  border: 1px solid #d7e7e1;
+  background: var(--bg-card-gradient);
+  border: 1px solid var(--border-color);
   border-radius: 18px;
   overflow: hidden;
   box-shadow: var(--shadow-sm);
@@ -36,7 +36,7 @@
 .card:hover {
   transform: translateY(-4px);
   box-shadow: var(--shadow-md);
-  border-color: #bcd5cc;
+  border-color: var(--border-color-strong);
 }
 
 .cardImage {
