@@ -32,7 +32,7 @@
   text-align: center;
   color: var(--text-muted);
   padding: 2.6rem 1.2rem;
-  background: var(--bg-panel-gradient);
+  background: var(--bg-panel-empty);
   border-radius: 16px;
   border: 1px solid var(--border-color);
 }

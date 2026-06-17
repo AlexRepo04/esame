@@ -20,8 +20,30 @@
   font-size: 1rem;
 }
 
-.products-page__form-section { margin-top: 1.5rem; background: var(--bg-surface-soft); padding: 1rem; border-radius: 12px; border: 1px solid var(--border-color); }
-.products-page__form { display: grid; gap: 0.6rem; grid-template-columns: 1fr; }
+.products-page__form-section {
+  margin-top: 1.5rem;
+  background: var(--bg-surface-soft);
+  padding: 1rem;
+  border-radius: 12px;
+  border: 1px solid var(--border-color);
+}
+.products-page__form {
+  display: grid;
+  gap: 0.6rem;
+  grid-template-columns: 1fr;
+}
 
-.products-page__input, input[type="number"] { padding: 0.6rem; border-radius: 8px; border: 1px solid var(--border-color); }
-.products-page__button { padding: 0.7rem 1rem; background: var(--bg-button-gradient); color: var(--text-light); border-radius: 10px; border: none; font-weight: 700; }
+.products-page__input,
+input[type="number"] {
+  padding: 0.6rem;
+  border-radius: 8px;
+  border: 1px solid var(--border-color);
+}
+.products-page__button {
+  padding: 0.7rem 1rem;
+  background: var(--color-primary);
+  color: var(--text-light);
+  border-radius: 10px;
+  border: none;
+  font-weight: 700;
+}
