@@ -52,7 +52,7 @@
 
 .product-cards__title {
   font-size: 20px;
-  color: var(--color-secondary);
+  color: var(--text-main);
   font-weight: bold;
 }
 
