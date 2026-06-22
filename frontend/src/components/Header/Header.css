@@ -70,7 +70,7 @@
 }
 
 .site-header__login-btn {
-  background: var(--bg-accent-gradient);
+  background: var(--palette-mist);
   color: var(--text-on-accent);
   border: none;
   padding: 0.6rem 1.05rem;

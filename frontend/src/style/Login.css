@@ -59,7 +59,7 @@
 .auth-page__submit {
   width: 100%;
   padding: 0.82rem;
-  background: var(--bg-button-gradient);
+  background: var(--color-primary);
   color: var(--text-light);
   border: none;
   border-radius: 12px;

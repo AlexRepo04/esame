@@ -47,7 +47,7 @@
 }
 
 .hero-banner__cta {
-  background: var(--bg-accent-gradient);
+  background: var(--palette-mist);
   color: var(--text-on-accent);
   padding: 0.86rem 2rem;
   border-radius: 30px;
