@@ -24,17 +24,17 @@ export default function Cards() {
   // Dati delle cards. Puoi spostarli anche in un file esterno o prenderli da un'API!
   const cardsData = [
     {
-      img: "https://images.unsplash.com/photo-1555066931-4365d14bab8c?auto=format&fit=crop&w=400&q=80",
+      img: "https://images.unsplash.com/photo-1505409859467-3a796fd5798e?q=80&w=1170&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
       title: "Titolo Card",
       desc: "Desc Card",
     },
     {
-      img: "https://images.unsplash.com/photo-1517694712202-14dd9538aa97?auto=format&fit=crop&w=400&q=80",
+      img: "https://images.unsplash.com/photo-1521737604893-d14cc237f11d?q=80&w=1184&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
       title: "Titolo Card",
       desc: "Desc Card",
     },
     {
-      img: "https://images.unsplash.com/photo-1461749280684-dccba630e2f6?auto=format&fit=crop&w=400&q=80",
+      img: "https://images.unsplash.com/photo-1600765728673-7b4aa76cc3ce?q=80&w=1170&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
       title: "Titolo Card",
       desc: "Desc Card",
     },
@@ -43,7 +43,7 @@ export default function Cards() {
   return (
     <section className="cards">
       <div className="container">
-        <h2 className="title">I Nostri Servizi</h2>
+        <h2 className="title">I Nostri Vantaggi</h2>
         <div className="grid">
           {cardsData.map((card, index) => (
             <CardItem

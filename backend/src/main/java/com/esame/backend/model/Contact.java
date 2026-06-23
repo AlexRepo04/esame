@@ -17,10 +17,17 @@ public class Contact {
     @Column(nullable = false)
     private String email;
 
-    private String subject;
+    @Column(nullable = false)
+    private String citta;
+
+    @Column(nullable = false)
+    private String spazioSelezionato;
+
+    @Column(nullable = true)
+    private String nPersone;
 
     @Column(columnDefinition = "TEXT", nullable = false)
-    private String message;
+    private String descrizioneAttivita;
 
     @Column(name = "created_at", updatable = false)
     private LocalDateTime createdAt;
@@ -30,31 +37,80 @@ public class Contact {
         this.createdAt = LocalDateTime.now();
     }
 
-    public Contact() {}
-
-    public Contact(String name, String email, String subject, String message) {
-        this.name = name;
-        this.email = email;
-        this.subject = subject;
-        this.message = message;
+    public Contact() {
     }
 
-    // ---- GETTERS & SETTERS ----
-    public Long getId() { return id; }
-    public void setId(Long id) { this.id = id; }
+    public Contact(String name, String email, String citta, String spazioSelezionato, String nPersone,
+            String descrizioneAttivita) {
+        this.name = name;
+        this.email = email;
+        this.citta = citta;
+        this.spazioSelezionato = spazioSelezionato;
+        this.nPersone = nPersone;
+        this.descrizioneAttivita = descrizioneAttivita;
+    }
 
-    public String getName() { return name; }
-    public void setName(String name) { this.name = name; }
+    public Long getId() {
+        return id;
+    }
 
-    public String getEmail() { return email; }
-    public void setEmail(String email) { this.email = email; }
+    public void setId(Long id) {
+        this.id = id;
+    }
 
-    public String getSubject() { return subject; }
-    public void setSubject(String subject) { this.subject = subject; }
+    public String getName() {
+        return name;
+    }
 
-    public String getMessage() { return message; }
-    public void setMessage(String message) { this.message = message; }
+    public void setName(String name) {
+        this.name = name;
+    }
 
-    public LocalDateTime getCreatedAt() { return createdAt; }
-    public void setCreatedAt(LocalDateTime createdAt) { this.createdAt = createdAt; }
+    public String getEmail() {
+        return email;
+    }
+
+    public void setEmail(String email) {
+        this.email = email;
+    }
+
+    public String getCitta() {
+        return citta;
+    }
+
+    public void setCitta(String citta) {
+        this.citta = citta;
+    }
+
+    public String getSpazioSelezionato() {
+        return spazioSelezionato;
+    }
+
+    public void setSpazioSelezionato(String spazioSelezionato) {
+        this.spazioSelezionato = spazioSelezionato;
+    }
+
+    public String getNPersone() {
+        return nPersone;
+    }
+
+    public void setNPersone(String nPersone) {
+        this.nPersone = nPersone;
+    }
+
+    public String getDescrizioneAttivita() {
+        return descrizioneAttivita;
+    }
+
+    public void setDescrizioneAttivita(String descrizioneAttivita) {
+        this.descrizioneAttivita = descrizioneAttivita;
+    }
+
+    public LocalDateTime getCreatedAt() {
+        return createdAt;
+    }
+
+    public void setCreatedAt(LocalDateTime createdAt) {
+        this.createdAt = createdAt;
+    }
 }

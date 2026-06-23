@@ -6,11 +6,11 @@ import {
   type ChangeEvent,
   type InputHTMLAttributes,
 } from "react";
-import { productAPI } from "../api/api";
+import { spaceAPI } from "../api/api";
 import { useAuth } from "../context/AuthContext";
-import type { Product, ProductFormData } from "../types";
-import ProductCards from "../components/ProductCards/ProductCards";
-import "../style/ProductPage.css";
+import type { Space, SpaceFormData } from "../types";
+import SpaceCards from "../components/SpaceCards/SpaceCards";
+import "../style/SpacePage.css";
 
 interface InputProps extends InputHTMLAttributes<HTMLInputElement> {
   label?: string;
@@ -24,7 +24,7 @@ function Input({ label, ...props }: InputProps) {
           {label}
         </label>
       )}
-      <input className="products-page__input" {...props} />
+      <input className="space-page__input" {...props} />
     </div>
   );
 }
@@ -34,41 +34,40 @@ function Button({
   ...props
 }: ButtonHTMLAttributes<HTMLButtonElement>) {
   return (
-    <button className="products-page__button" {...props}>
+    <button className="space-page__button" {...props}>
       {children}
     </button>
   );
 }
 
-async function fetchProducts() {
+async function fetchSpaces() {
   try {
-    const response = await productAPI.getAll();
+    const response = await spaceAPI.getAll();
     return Array.isArray(response) ? response : [];
   } catch (error) {
-    console.error("Errore caricamento prodotti", error);
+    console.error("Errore caricamento spazi", error);
     return [];
   }
 }
 
-function ProductsPage() {
-  const [products, setProducts] = useState<Product[]>([]);
+function SpacePage() {
+  const [Spaces, setSpaces] = useState<Space[]>([]);
   const { user } = useAuth();
-  const [form, setForm] = useState<ProductFormData>({
+  const [form, setForm] = useState<SpaceFormData>({
     title: "",
+    citta: "",
     description: "",
-    price: 0,
+    servizi: "",
   });
   const [loading, setLoading] = useState(false);
-  const [deletingProductId, setDeletingProductId] = useState<number | null>(
-    null,
-  );
+  const [deletingSpaceId, setDeletingSpaceId] = useState<number | null>(null);
 
   useEffect(() => {
     let isMounted = true;
 
-    fetchProducts().then((data) => {
+    fetchSpaces().then((data) => {
       if (isMounted) {
-        setProducts(data);
+        setSpaces(data);
       }
     });
 
@@ -79,66 +78,75 @@ function ProductsPage() {
 
   const handleChange = (e: ChangeEvent<HTMLInputElement>) => {
     const { name, value } = e.target;
-    setForm({ ...form, [name]: name === "price" ? Number(value) : value });
+    setForm({ ...form, [name]: name === "name" ? Number(value) : value });
   };
 
   const handleSubmit = async (e: FormEvent) => {
     e.preventDefault();
     setLoading(true);
     try {
-      await productAPI.create(form);
-      setForm({ title: "", description: "", price: 0 });
-      setProducts(await fetchProducts());
+      await spaceAPI.create(form);
+      setForm({ title: "", citta: "", description: "", servizi: "" });
+      setSpaces(await fetchSpaces());
     } catch (error) {
-      console.error("Errore creazione prodotto", error);
+      console.error("Errore creazione spazio", error);
     } finally {
       setLoading(false);
     }
   };
 
-  const handleDelete = async (productId: number) => {
-    setDeletingProductId(productId);
+  const handleDelete = async (SpaceId: number) => {
+    setDeletingSpaceId(SpaceId);
     try {
-      await productAPI.delete(productId);
-      setProducts((currentProducts) =>
-        currentProducts.filter((product) => product.id !== productId),
+      await spaceAPI.delete(SpaceId);
+      setSpaces((currentSpaces) =>
+        currentSpaces.filter((Space) => Space.id !== SpaceId),
       );
     } catch (error) {
-      console.error("Errore eliminazione prodotto", error);
+      console.error("Errore eliminazione spazio", error);
     } finally {
-      setDeletingProductId(null);
+      setDeletingSpaceId(null);
     }
   };
 
   return (
-    <div className="products-page">
-      <h1 className="products-page__title">I Nostri Prodotti</h1>
+    <div className="space-page">
+      <h1 className="space-page__title">I Nostri Spazi</h1>
 
       {/* Cards dinamiche dal Backend */}
-      {products.length > 0 ? (
-        <ProductCards
-          products={products}
-          className="products-page__cards"
+      {Spaces.length > 0 ? (
+        <SpaceCards
+          space={Spaces}
+          className="space-page__cards"
           canDelete={Boolean(user)}
-          deletingProductId={deletingProductId}
+          deletingspaceId={deletingSpaceId}
           onDelete={handleDelete}
         />
       ) : (
-        <p className="products-page__empty">Nessun prodotto disponibile.</p>
+        <p className="Spaces-page__empty">Nessuno spazio disponibile.</p>
       )}
 
       {/* Form per aggiungere prodotto */}
       {user && (
-        <div className="products-page__form-section">
-          <h2>Aggiungi Prodotto</h2>
-          <form onSubmit={handleSubmit} className="products-page__form">
+        <div className="space-page__form-section">
+          <h2>Aggiungi Spazi</h2>
+          <form onSubmit={handleSubmit} className="space-page__form">
             <Input
               label="Titolo"
               type="text"
               name="title"
               value={form.title}
               onChange={handleChange}
-              placeholder="Nome prodotto"
+              placeholder="Nome spazio"
+              required
+            />
+            <Input
+              label="Città"
+              type="text"
+              name="citta"
+              value={form.citta}
+              onChange={handleChange}
+              placeholder="e.g. Milano"
               required
             />
             <Input
@@ -147,17 +155,15 @@ function ProductsPage() {
               name="description"
               value={form.description}
               onChange={handleChange}
-              placeholder="Descrizione prodotto"
+              placeholder="Descrizione spazio"
             />
             <Input
-              label="Prezzo (€)"
-              type="number"
-              name="price"
-              value={form.price}
-              min={1}
+              label="Servizi"
+              type="text"
+              name="servizi"
+              value={form.servizi}
               onChange={handleChange}
-              placeholder="0.00"
-              required
+              placeholder="elenca i servizi"
             />
 
             <Input
@@ -170,7 +176,7 @@ function ProductsPage() {
             />
 
             <Button disabled={loading}>
-              {loading ? "Salvataggio..." : "Crea Prodotto"}
+              {loading ? "Salvataggio..." : "Crea Spazio"}
             </Button>
           </form>
         </div>
@@ -179,4 +185,4 @@ function ProductsPage() {
   );
 }
 
-export default ProductsPage;
+export default SpacePage;

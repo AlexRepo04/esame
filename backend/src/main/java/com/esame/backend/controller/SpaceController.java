@@ -1,9 +1,9 @@
 package com.esame.backend.controller;
 
 import com.esame.backend.dto.GenericResponse;
-import com.esame.backend.dto.ProductRequest;
-import com.esame.backend.model.Product;
-import com.esame.backend.service.ProductService;
+import com.esame.backend.dto.SpaceRequest;
+import com.esame.backend.model.Space;
+import com.esame.backend.service.SpaceService;
 import jakarta.validation.Valid;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -12,38 +12,36 @@ import org.springframework.web.bind.annotation.*;
 import java.util.List;
 
 @RestController
-@RequestMapping("/api/products")
-public class ProductController {
+@RequestMapping("/api/spaces")
+public class SpaceController {
 
-    private final ProductService productService;
+    private final SpaceService spaceService;
 
-    public ProductController(ProductService productService) {
-        this.productService = productService;
+    public SpaceController(SpaceService spaceService) {
+        this.spaceService = spaceService;
     }
 
     @PostMapping
-    public ResponseEntity<GenericResponse> createProduct(
+    public ResponseEntity<GenericResponse> createSpace(
             @RequestHeader(value = "Authorization", required = false) String authorization,
-            @Valid @RequestBody ProductRequest request
-    ) {
+            @Valid @RequestBody SpaceRequest request) {
         requireAuthenticated(authorization);
-        productService.saveProduct(request);
-        return ResponseEntity.ok(GenericResponse.ok("Prodotto creato con successo!"));
+        spaceService.saveSpace(request);
+        return ResponseEntity.ok(GenericResponse.ok("Spazio creato con successo!"));
     }
 
     @GetMapping
-    public ResponseEntity<List<Product>> getAllProducts() {
-        return ResponseEntity.ok(productService.getAllProducts());
+    public ResponseEntity<List<Space>> getAllSpace() {
+        return ResponseEntity.ok(spaceService.getAllSpace());
     }
 
     @DeleteMapping("/{id}")
-    public ResponseEntity<GenericResponse> deleteProduct(
+    public ResponseEntity<GenericResponse> deleteSpace(
             @RequestHeader(value = "Authorization", required = false) String authorization,
-            @PathVariable Long id
-    ) {
+            @PathVariable Long id) {
         requireAuthenticated(authorization);
-        productService.deleteProduct(id);
-        return ResponseEntity.ok(GenericResponse.ok("Prodotto eliminato con successo!"));
+        spaceService.deleteSpace(id);
+        return ResponseEntity.ok(GenericResponse.ok("Spazio eliminato con successo!"));
     }
 
     private void requireAuthenticated(String authorization) {

@@ -12,20 +12,58 @@ public class ContactRequest {
     @Email(message = "Email non valida")
     private String email;
 
-    private String subject;
+    private String citta;
+    private String spazioSelezionato;
+    private String nPersone;
 
     @NotBlank(message = "Messaggio obbligatorio")
-    private String message;
+    private String descrizioneAttivita;
 
-    public String getName() { return name; }
-    public void setName(String name) { this.name = name; }
+    public String getName() {
+        return name;
+    }
 
-    public String getEmail() { return email; }
-    public void setEmail(String email) { this.email = email; }
+    public void setName(String name) {
+        this.name = name;
+    }
 
-    public String getSubject() { return subject; }
-    public void setSubject(String subject) { this.subject = subject; }
+    public String getEmail() {
+        return email;
+    }
 
-    public String getMessage() { return message; }
-    public void setMessage(String message) { this.message = message; }
+    public void setEmail(String email) {
+        this.email = email;
+    }
+
+    public String getCitta() {
+        return citta;
+    }
+
+    public void setCitta(String citta) {
+        this.citta = citta;
+    }
+
+    public String getSpazioSelezionato() {
+        return spazioSelezionato;
+    }
+
+    public void setSpazioSelezionato(String spazioSelezionato) {
+        this.spazioSelezionato = spazioSelezionato;
+    }
+
+    public String getNPersone() {
+        return nPersone;
+    }
+
+    public void setNPersone(String nPersone) {
+        this.nPersone = nPersone;
+    }
+
+    public String getDescrizioneAttivita() {
+        return descrizioneAttivita;
+    }
+
+    public void setDescrizioneAttivita(String descrizioneAttivita) {
+        this.descrizioneAttivita = descrizioneAttivita;
+    }
 }

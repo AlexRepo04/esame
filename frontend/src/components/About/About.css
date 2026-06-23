@@ -1,12 +1,17 @@
 .about-section {
   display: flex;
+  justify-content: space-around;
   color: var(--text-main);
-  text-align: center;
   max-width: 1510px;
   margin: 0 auto;
   padding: 69px;
-  flex-direction: column;
+  flex-direction: row;
   align-items: center;
+}
+
+.about-text {
+  color: var(--text-main);
+  text-align: right;
 }
 
 .about-title {

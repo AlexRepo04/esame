@@ -20,8 +20,10 @@ public class ContactService {
         Contact contact = new Contact();
         contact.setName(request.getName());
         contact.setEmail(request.getEmail());
-        contact.setSubject(request.getSubject());
-        contact.setMessage(request.getMessage());
+        contact.setCitta(request.getCitta());
+        contact.setSpazioSelezionato(request.getSpazioSelezionato());
+        contact.setNPersone(request.getNPersone());
+        contact.setDescrizioneAttivita(request.getDescrizioneAttivita());
         return contactRepository.save(contact);
     }
 

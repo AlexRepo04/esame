@@ -64,7 +64,7 @@ function Dashboard() {
       {!loading && contacts.length > 0 && (
         <div>
           <h2 className="dashboard-page__subtitle">
-            📩 Messaggi ricevuti ({contacts.length})
+            Messaggi ricevuti ({contacts.length})
           </h2>
           {contacts.map((contact) => (
             <div key={contact.id} className="dashboard-card">
@@ -75,12 +75,15 @@ function Dashboard() {
                 </span>
               </div>
               <div className="dashboard-card__email">{contact.email}</div>
-              {contact.subject && (
+              {contact.spazioSelezionato && (
                 <div className="dashboard-card__subject">
-                  📌 {contact.subject}
+                  {contact.spazioSelezionato}
                 </div>
               )}
-              <div className="dashboard-card__message">{contact.message}</div>
+
+              <div className="dashboard-card__message">
+                {contact.descrizioneAttivita}
+              </div>
             </div>
           ))}
         </div>

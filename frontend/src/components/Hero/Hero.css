@@ -10,18 +10,22 @@
   isolation: isolate;
   background-image:
     var(--bg-hero-overlay),
-    url('https://images.unsplash.com/photo-1498050108023-c5249f4df085?ixlib=rb-4.0.3&auto=format&fit=crop&w=1350&q=80');
+    url("https://images.unsplash.com/photo-1497215728101-856f4ea42174?q=80&w=1170&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D");
   background-size: cover;
   background-position: center;
   box-shadow: var(--shadow-md);
 }
 
 .hero-banner::before {
-  content: '';
+  content: "";
   position: absolute;
   inset: 0;
   background:
-    radial-gradient(circle at 20% 20%, var(--overlay-light-strong), transparent 38%),
+    radial-gradient(
+      circle at 20% 20%,
+      var(--overlay-light-strong),
+      transparent 38%
+    ),
     radial-gradient(circle at 85% 80%, var(--overlay-accent), transparent 45%);
   z-index: -1;
 }
@@ -55,7 +59,9 @@
   font-weight: 700;
   border: none;
   box-shadow: 0 8px 20px var(--shadow-color-strong);
-  transition: transform 0.2s, filter 0.2s;
+  transition:
+    transform 0.2s,
+    filter 0.2s;
 }
 
 .hero-banner__cta:hover {
@@ -64,11 +70,11 @@
 }
 
 @media (max-width: 768px) {
-  .hero-banner {
-    border-radius: 16px;
-  }
-
   .hero-banner__content {
     padding: 1.6rem 1rem;
+  }
+  .mainContent {
+    padding: 0;
+    width: auto;
   }
 }

@@ -12,8 +12,10 @@ export interface AuthResponse {
 export interface ContactFormData {
   name: string
   email: string
-  subject: string
-  message: string
+  citta: string
+  spazioSelezionato: string
+  nPersone: string
+  descrizioneAttivita: string
 }
 
 export interface Contact extends ContactFormData {
@@ -25,18 +27,20 @@ export interface GenericResponse {
   message: string
 }
 
-export interface Product {
+export interface Space {
   id: number;
   title: string;
+  citta: string;
   description: string;
-  price: number;
+  servizi: string;
   imageUrl?: string;
   createdAt: string;
 }
 
-export interface ProductFormData {
+export interface SpaceFormData {
   title: string;
+  citta: string;
   description: string;
-  price: number;
+  servizi: string;
   imageUrl?: string;
 }

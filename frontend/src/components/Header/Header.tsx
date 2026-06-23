@@ -1,6 +1,7 @@
 import { Link } from "react-router-dom";
 import { useAuth } from "../../context/AuthContext";
 import "./Header.css";
+import logoWorkSpaceNow from "/logo.png";
 
 function Header() {
   const { user, logout } = useAuth();
@@ -9,16 +10,16 @@ function Header() {
     <header className="site-header">
       <div className="site-header__inner">
         <Link to="/" className="site-header__brand">
-          <img src="/path/to/logo.png" alt="Logo" />
-          <p>Nome Sito</p>
+          <img src={logoWorkSpaceNow} alt="Logo" />
+          <p>WorkSpaceNow</p>
         </Link>
 
         <nav className="site-header__nav">
           <Link to="/" className="site-header__link">
             Home
           </Link>
-          <Link to="/products" className="site-header__link">
-            Prodotti
+          <Link to="/space" className="site-header__link">
+            Spazi Offerti
           </Link>
 
           {user ? (

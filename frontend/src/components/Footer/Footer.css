@@ -36,7 +36,10 @@
   border: 1px solid var(--border-on-dark);
   padding: 0.38rem 0.75rem;
   border-radius: 999px;
-  transition: color 0.2s, background-color 0.2s, border-color 0.2s;
+  transition:
+    color 0.2s,
+    background-color 0.2s,
+    border-color 0.2s;
 }
 
 .site-footer__link:hover {
@@ -52,6 +55,17 @@
   padding-top: 1rem;
   width: 100%;
   text-align: center;
+}
+
+.site-footer__social {
+  display: flex;
+  justify-content: center;
+  flex-direction: row;
+}
+
+.site-footer__link-social {
+  display: flex;
+  justify-content: center;
 }
 
 @media (max-width: 640px) {
